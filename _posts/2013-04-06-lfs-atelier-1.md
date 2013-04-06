@@ -19,6 +19,7 @@ Paquets
  * [GCC (phase 1)](#gcc_phase_1)
  * [Linux API Headers](#linux_api_headers)
  * [Glibc](#glibc)
+ * [La danse de la compilation](#la_danse_de_la_compilation)
  * [Binutils (phase 2)](#binutils_phase_2)
  * [GCC (phase 2)](#gcc_phase_2)
  * [TCL](#tcl)
@@ -67,7 +68,6 @@ puis utiliser l'adresse IP avec la commande suivante:
 
     ssh root@192.168.2.150
     #mot de passe: root
-
 
 Partitionnement
 ===============
@@ -180,6 +180,21 @@ Mise en place du script:
     mount -t ext3 /dev/sda3 /mnt/lfs
     su - lfs
     EOF
+
+La danse de la compilation
+==========================
+
+Patron générique pour compiler un logiciel:
+
+    tar xf paquet-1.2.3.tar.gz
+    cd paquet-1.2.3
+    ./configure --prefix=/usr/bin
+    make
+    make install
+
+Si vous avez 2 CPUs ou plus:
+
+    make -j2
 
 Paquets
 =======
@@ -747,8 +762,7 @@ Xz
 Topics to discuss
 -----------------
 
-* linker VS compiler
+* linker
 * glibc bug 2.16
-* configure make make install dance
 * open source jeopardy
 
