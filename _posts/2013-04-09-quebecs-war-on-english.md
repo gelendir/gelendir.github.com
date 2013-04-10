@@ -278,7 +278,7 @@ Whenever it comes to the language barrier, it's always hard.
 Let me repeat that again...
 
 
-# LANGUAGE IN CANADA F\*\*\*ING COMPLICATED  #
+# LANGUAGES IN CANADA ARE F\*\*\*ING COMPLICATED  #
 
 
 I'll say it in french aswell (just to be sure...)
