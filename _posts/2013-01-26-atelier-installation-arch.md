@@ -1,6 +1,7 @@
 ---
 title: Atelier d'installation Arch Linux
 layout: default
+category: linuq
 ---
 
 Atelier Installation Arch Linux

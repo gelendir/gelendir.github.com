@@ -1,6 +1,7 @@
 ---
 title: Plan atelier introduction au terminal
 layout: default
+category: linuq
 ---
 
 Qu'est-ce qu'un terminal ?

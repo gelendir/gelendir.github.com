@@ -1,6 +1,7 @@
 ---
 title: Session sur audio
 layout: default
+category: linuq
 ---
 
 Session sur l'audio

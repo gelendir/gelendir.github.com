@@ -1,6 +1,7 @@
 ---
 title: Exercises introduction au terminal
 layout: default
+category: linuq
 ---
 
 Navigation dans le terminal

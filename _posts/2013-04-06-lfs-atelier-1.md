@@ -1,6 +1,7 @@
 ---
 title: LFS - Atelier 1
 layout: default
+category: linuq
 ---
 
 LFS Atelier 1
