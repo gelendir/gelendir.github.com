@@ -35,17 +35,35 @@
             <ul class="nav list well">
 
                 <li class="nav-header">
-                    Articles
+                    Notes LinuQ
                 </li>
                 {% for post in site.posts %}
+                    {% if post.category == "linuq" %}
                     <li>
                         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                     </li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+
+            <ul class="nav list well">
+
+                <li class="nav-header">
+                    Articles personelles
+                </li>
+                {% for post in site.posts %}
+                    {% if post.category == "personal" %}
+                    <li>
+                        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                    </li>
+                    {% endif %}
                 {% endfor %}
 
             </ul>
 
         </section>
+
 
         <section class="fluid-content well post">
 
