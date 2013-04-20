@@ -443,6 +443,9 @@ GCC phase 2
 
 Créer le fichier "limits.h"
 
+    cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+      `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+
 Forcer l'utilisation de l'option "-fomit-frame-pointer" vu que nous ne
 compilons pas GCC 3 fois de suite
 
