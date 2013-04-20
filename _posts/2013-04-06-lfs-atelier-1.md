@@ -50,25 +50,99 @@ Paquets
 Installation des machines virtuelles
 ====================================
 
-Importer le fichier lfs-atelier1.ova (File -> Import Appliance)
+Premièrement, assurez-vous d'avoir une copie de la machine virtuelle lfs.
+(Le fichier est nommé lfs-atelier1.ova)
 
-Configuration des machines virtuelles
-=====================================
+Importez la machine virtuelle en allant dans le menu **File** puis **Import Appliance**
 
-Bouton droit sur la machine virtuelle -> Settings. Paramètres à changer:
+![Etape 1]({{ site.baseurl }}/img/lfs/import1.png)
 
- * System -> Processor (nombre de CPU)
- * Network -> Adapter 1 -> Attached to: Bridged Adapter
+Cliquez sur **Open Appliance** puis sélectionnez le fichier de la machine virtuelle (lfs-aterlier1.ova)
 
-Pour accèder à la machine virtuelle en SSH, éxécuter la commande
-suivante dans la vm:
+![Etape 2]({{ site.baseurl }}/img/lfs/import2.png)
+
+**IMPORTANT**: N'oubliez pas de cocher la case **Reinitialize the MAC address of all network cards**
+
+
+Vous pouvez aussi changer le nombre de CPUs si vous avez plus d'un coeur sur votre ordinateur.
+
+![Etape 3]({{ site.baseurl }}/img/lfs/import3.png)
+
+Une fois la machine importée, cliquez le bouton-droit sur la machine virtuelle puis allez
+dans **Settings**
+
+![Etape 4]({{ site.baseurl }}/img/lfs/import4.png)
+
+Dans l'onglet **Network**, assurez vous que **Adapter 1** est en mode **Host-only Adapter**
+
+![Etape 5]({{ site.baseurl }}/img/lfs/import5.png)
+
+
+
+Vérification du réseau et accès par SSH
+=======================================
+
+SSH vous permet de vous connecter, à partir d'un terminal, sur votre machine virtuelle.
+En utilisant SSH à travers un terminal, vous pouvez copier/coller les commandes à éxécuter plus
+facilement que de les tapper à la main dans la fenêtre VirtualBox.
+
+Adresse IP
+----------
+
+Premièrement, vous devez vérifier quel est votre adresse IP. Tappez la commande suivante
+dans la machine virtuelle :
 
     ifconfig eth0
 
-puis utiliser l'adresse IP avec la commande suivante:
 
-    ssh root@192.168.2.150
-    #mot de passe: root
+Vous devriez voir un texte similaire apparaître:
+
+    eth0      Link encap:Ethernet  HWaddr 08:00:27:46:1b:2e
+              inet addr:192.168.56.104  Bcast:192.168.56.255  Mask:255.255.255.0
+              inet6 addr: fe80::a00:27ff:fe46:1b2e/64 Scope:Link
+              UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+              RX packets:53 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:45 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:1000 
+              RX bytes:8099 (7.9 KiB)  TX bytes:6827 (6.6 KiB)
+
+
+Dans cet exemple, l'adresse IP de la machine virtuelle est 192.168.56.104
+
+Message d'erreur
+----------------
+
+Si jamais un message d'erreur apparaît en éxécutant la commande ifconfig, vous avez
+peut-être besoin de réinitialiser votre carte réseau. Pour la réinitialiser, commencez par
+effacer ce fichier:
+
+    rm /etc/udev/rules.d/70-persistent-net.rules
+
+Puis assurez vous que le contenu du fichier **/etc/network/interfaces** ressemble à ceci (vous
+pouvez éditer le fichier avec la commande **nano /etc/network/interfaces**
+
+    # This file describes the network interfaces available on your system
+    # and how to activate them. For more information, see interfaces(5).
+
+    # The loopback network interface
+    auto lo
+    iface lo inet loopback
+
+    # The primary network interface
+    allow-hotplug eth0
+    iface eth0 inet dhcp
+
+Ensuite, redémarrez votre machine virtuelle.
+
+Accès SSH
+---------
+
+
+**À partir d'un terminal sur votre machine hôte** (pas votre machine virtuelle), ouvrez un terminal.
+Avec votre adresse IP, utilisez la commande suivante pour vous connecter en SSH :
+
+    ssh root@192.168.56.104
+    #password: root
 
 Partitionnement
 ===============
@@ -78,7 +152,7 @@ Partitionnement
 
 Une fois les partitions crée, la monter:
 
-    EXPORT lfs=/mnt/lfs
+    export LFS=/mnt/lfs
     mkdir -pv $LFS
     mount -v -t ext4 /dev/sda3 $LFS
 
@@ -178,7 +252,7 @@ Mise en place du script:
 
     cat > /root/lfsenv.sh << "EOF"
     #!/bin/bash
-    mount -t ext3 /dev/sda3 /mnt/lfs
+    mount -t ext4 /dev/sda3 /mnt/lfs
     su - lfs
     EOF
 
