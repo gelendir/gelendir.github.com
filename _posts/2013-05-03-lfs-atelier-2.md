@@ -229,6 +229,7 @@ glibc
 Installation:
 
     touch /etc/ld.so.conf #to prevent install warnings
+    make
     make install
 
 
