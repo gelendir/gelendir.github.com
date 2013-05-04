@@ -801,14 +801,12 @@ shadow
 
     cd /sources/shadow-4.1.5.1
     
-
-disable compilation of groups program
+Désactiver la compilation du programme 'groups' (déja installé par util-linux)
 
     sed -i 's/groups$(EXEEXT) //' src/Makefile.in
     find man -name Makefile.in -exec sed -i 's/groups\.1 / /' {} \;
-    
 
-use sha-512 for password encryption
+Utiliser le sha-512 pour l'encryption des mot de passe
 
     sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' \
         -e 's@/var/spool/mail@/var/mail@' etc/login.defs
@@ -817,13 +815,11 @@ use sha-512 for password encryption
     make
     make install
     
-
-move passwd to /bin instead
+déplacer passwd dans /bin pour des fins de rétrocompatibilité
 
     mv -v /usr/bin/passwd /bin
     
-
-enable shadowed passwords
+Activer les mot de passes dans un fichier "shadow" séparé
 
     pwconv
     grpconv
@@ -852,8 +848,7 @@ coreutils
     make
     make install
     
-
-move programs to /bin instead of /usr
+déplacer les programmes dans /bin pour des fins de rétrocompatibilité
 
     mv -v /usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} /bin
     mv -v /usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} /bin
@@ -896,8 +891,7 @@ bison
     cd /sources/bison-2.7
     ./configure --prefix=/usr
     
-
-force internationalization support
+Activer le support pour l'internationalisation
 
     echo '#define YYENABLE_NLS 1' >> lib/config.h
     
@@ -923,8 +917,7 @@ readline
 
     cd /sources/readline-6.2
     
-
-prevent readline libs in toolchain from being moved accidentally
+éviter de déplacer les librairies de readline lors de l'installation
 
     sed -i '/MV.*old/d' Makefile.in
     sed -i '/{OLDSUFF}/c:' support/shlib-install
@@ -934,13 +927,12 @@ prevent readline libs in toolchain from being moved accidentally
     make SHLIB_LIBS=-lncurses
     make install
     
-
-move static libraries to their proper place
+Déplacer les librairies statiques dans un emplacement plus standard
 
     mv -v /lib/lib{readline,history}.a /usr/lib
     
-
-remove old readline libs and link them to /usr/lib
+Supprimer les vieilles versions des librairies readline et créer des liens
+vers /usr/lib pour des fins de rétrocompatibilité
 
     rm -v /lib/lib{readline,history}.so
     ln -sfv ../../lib/libreadline.so.6 /usr/lib/libreadline.so
@@ -1010,7 +1002,7 @@ corriger une incompatibilité avec glibc 2.17
     make install
     
 
-move programs to /bin instead of /usr/bin
+déplacer les programmes dans /bin pour des fins de rétrocompaibilité
 
     mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin
 
@@ -1021,13 +1013,12 @@ perl
 
     cd /sources/perl-5.16.2
     
-
-used by perl during build
+perl nécessite un /etc/hosts pour la compilation. nous créons donc un /etc/hosts 
+temporaire
 
     echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
     
-
-use zlib available in system instead of internal zlib
+Utiliser le zlib que nous avons installé à la place d'un zlib interne
 
     sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
            -e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
@@ -1108,7 +1099,7 @@ findutils
     make install
     
 
-move find program to /bin
+déplacer le programme dans /bin pour des fins de rétrocompatibilité
 
     mv -v /usr/bin/find /bin
     sed -i 's/find:=${BINDIR}/find:=\/bin/' /usr/bin/updatedb
@@ -1126,13 +1117,12 @@ flex
     make
     make install
     
-
-some packages expect lex in /usr/lib
+certains programmes s'attendent à retrouver lex dans /usr/lib. Nous créons
+donc un lien symbolique
 
     ln -sv libfl.a /usr/lib/libl.a
     
-
-create a wrapper for backwards-compatibility with lex
+Créer un script de rétro-compatibilité pour l'ancien analyseur lexique, lex
 
     cat > /usr/bin/lex << "EOF"
     #!/bin/sh
@@ -1169,8 +1159,7 @@ groff
     mkdir -p /usr/share/doc/groff-1.22/pdf
     make install
     
-
-xman doesn't work without these symlinks
+le programme xman ne fonctionne pas sans ses liens symboliques
 
     ln -sv eqn /usr/bin/geqn
     ln -sv tbl /usr/bin/gtbl
@@ -1228,8 +1217,7 @@ gzip
     make
     make install
     
-
-move programs into /usr/bin
+déplacer les programmes dans /usr/bin pour des fins de rétrocompatibilité
 
     mv -v /bin/{gzexe,uncompress,zcmp,zdiff,zegrep} /usr/bin
     mv -v /bin/{zfgrep,zforce,zgrep,zless,zmore,znew} /usr/bin
@@ -1241,20 +1229,19 @@ iproute2
 
     cd /sources/iproute2-3.8.0
     
-
-deactivate arpd, not used a lot on linux systems
+désactivation de arpd qui est très peu utilisé de nos jours
 
     sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
     sed -i /ARPD/d Makefile
     sed -i 's/arpd.8//' man/man8/Makefile
     
 
-remove compiler warning
+corriger une erreur de compilation
 
     sed -i 's/-Werror//' Makefile
     
 
-compile
+compilation
 
     make DESTDIR=
     make DESTDIR=              \
@@ -1271,7 +1258,7 @@ kbd
     sed -i -e '326 s/if/while/' src/loadkeys.analyze.l
     
 
-deactivate resizecons
+désactiver l'option 'resizeicons' qui est très peu utilisé de nos jours
 
     sed -i 's/\(RESIZECONS_PROGS=\)yes/\1no/g' configure
     sed -i 's/resizecons.8 //' man/man8/Makefile.in
@@ -1283,7 +1270,7 @@ deactivate resizecons
     make install
     
 
-move programs to /bin
+déplacer les programmes dans /bin pour des fins de rétrocompatibilité
 
     mv -v /usr/bin/{kbd_mode,loadkeys,openvt,setfont} /bin
 
@@ -1304,8 +1291,7 @@ kmod
     make
     make pkgconfigdir=/usr/lib/pkgconfig install
     
-
-backwards compatibility with module-init-tools
+créer des liens symboliques pour la rétrocompatibilité avec module-init-tools
 
     for target in depmod insmod modinfo modprobe rmmod; do
       ln -sv ../bin/kmod /sbin/$target
@@ -1374,8 +1360,7 @@ sysklogd
     make
     make BINDIR=/sbin install
     
-
-create /etc/syslog.conf
+création du fichier de configuration pour syslog
 
     cat > /etc/syslog.conf << "EOF"
     #Begin /etc/syslog.conf
@@ -1398,13 +1383,13 @@ sysvinit
 
     cd /sources/sysvinit-2.88dsf
     
-
-make TERM message more clear when switching runlevels
+ajustement mineur pour affichier des messages plus clairs
+lorsque le système change de runlevel
 
     sed -i 's@Sending processes@& configured via /etc/inittab@g' src/init.c
     
-
-deactivate wall, mountpoint and utmpdump (already in util-linux)
+désactiver la compîlation de wall, mountpoint et utmpdump. Ces programmes sont
+fournis par util-linux
 
     sed -i -e '/utmpdump/d' \
            -e '/mountpoint/d' src/Makefile
@@ -1447,8 +1432,7 @@ texinfo
     make install
     make TEXMF=/usr/share/texmf install-tex
     
-
-regenerate info-dir
+Maintenant que texinfo est installé, nous pouvons regénérer les pages info
 
     cd /usr/share/info
     rm -v dir
@@ -1463,8 +1447,7 @@ vim
 
     cd /sources/vim73
     
-
-change default config file to /etc/vimrc
+Utiliser /etc/vimrc comme fichier de configuration par défaut pour vim
 
     echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
     
@@ -1472,21 +1455,19 @@ change default config file to /etc/vimrc
     make
     make install
     
-
-create symlink for vi
+Créer un lien symbolique pour le programme vi pour des fins de rétrocompatibilité
 
     ln -sv vim /usr/bin/vi
     for L in  /usr/share/man/{,*/}man1/vim.1; do
         ln -sv vim.1 $(dirname $L)/vi.1
     done
     
-
-make documentation accessible in /usr/share/doc/vim-7.3
+cérer un lien symbolique de la documentation de vim vers un emplacement standard
 
     ln -sv ../vim/vim73/doc /usr/share/doc/vim-7.3
     
 
-create basic vimrc
+Création du fichier de configuration de vim (vimrc)
 
     cat > /etc/vimrc << "EOF"
     " Begin /etc/vimrc
