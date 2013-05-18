@@ -64,6 +64,7 @@ Paquets
  * [tar](#tar)
  * [texinfo](#texinfo)
  * [vim](#vim)
+ * [systemd](#systemd)
 
 Préparation chroot
 ==================
