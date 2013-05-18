@@ -40,7 +40,7 @@
                 {% for post in site.posts %}
                     {% if post.category == "linuq" %}
                     <li>
-                        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
                     </li>
                     {% endif %}
                 {% endfor %}
@@ -55,7 +55,7 @@
                 {% for post in site.posts %}
                     {% if post.category == "personal" %}
                     <li>
-                        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
                     </li>
                     {% endif %}
                 {% endfor %}
