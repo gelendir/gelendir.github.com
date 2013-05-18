@@ -203,7 +203,7 @@ vous utilisez votre clavier dans une console.
     # Begin /etc/sysconfig/console
 
     KEYMAP="us"
-    FONT="lat1-16 -m iso-8859-1"
+    FONT="lat1-16 -m 8859-1"
 
     # End /etc/sysconfig/console
     EOF
