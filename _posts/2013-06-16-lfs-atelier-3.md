@@ -404,7 +404,7 @@ Installons grub au MBR
 
 Création du fichier de configuration GRUB
 
-cat > /boot/grub/grub.cfg << "EOF"
+    cat > /boot/grub/grub.cfg << "EOF"
     # Begin /boot/grub/grub.cfg
     set default=0
     set timeout=5
@@ -415,7 +415,7 @@ cat > /boot/grub/grub.cfg << "EOF"
     menuentry "GNU/Linux, Linux 3.8.1-lfs-7.3" {
             linux   /boot/vmlinuz-3.8.1-lfs-7.3 root=/dev/sda3 ro
     }
-EOF
+    EOF
 
 Reboot
 ======
