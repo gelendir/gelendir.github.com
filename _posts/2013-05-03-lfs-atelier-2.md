@@ -1543,6 +1543,21 @@ Création du fichier de configuration de vim (vimrc)
     
     rm -R /sources/vim73
 
+systemd
+-------
+
+    cd /sources/systemd-197
+    tar -xvf ../udev-lfs-197-2.tar.bz2
+    make -f udev-lfs-197-2/Makefile.lfs
+    make -f udev-lfs-197-2/Makefile.lfs install
+
+Initialiser la base de données udev
+
+    build/udevadm hwdb --update
+
+Créer la configuration initiale pour la carte réseau
+
+    bash udev-lfs-197-2/init-net-rules.sh
 
 Stripping
 =========
