@@ -1542,3 +1542,16 @@ Création du fichier de configuration de vim (vimrc)
     EOF
     
     rm -R /sources/vim73
+
+
+Stripping
+=========
+
+Cette étape est optionnelle, mais permet de récupérer de l'espace disque.
+Une fois tous les paquets compilés, vous pouvez éxécuter la commande suivante pour
+supprimer les symboles de debug dans la plupart des librairies et des programmes :
+
+    /tools/bin/find /{,usr/}{bin,lib,sbin} -type f \
+      -exec /tools/bin/strip --strip-debug '{}' ';'
+
+Vous pouvez ignorer les erreurs qui apparaissent lors de l'éxécutgion de la commande.
