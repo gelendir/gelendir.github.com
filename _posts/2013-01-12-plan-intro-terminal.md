@@ -159,7 +159,7 @@ Expansion et wildcards
 ======================
 
  * etoile
- * brackets []
+ * brackets \[]
  * brackets {}
 
 
