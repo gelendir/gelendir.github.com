@@ -227,3 +227,15 @@ N'oubliez pas que vous pouvez restaurer votre branche à son état précédent
 avec un reset.
 
     git reset --hard
+
+
+Github
+======
+
+Concepts à couvrir:
+
+ * Clone
+ * Push/pull
+ * Fork
+ * Merge request
+

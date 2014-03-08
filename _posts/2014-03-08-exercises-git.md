@@ -101,3 +101,27 @@ Exercice 10
 
 Fusionnez la branche "affichage_date" dans "master". Ensuite, fusionnez aussi
 la branche "affichage_repertoire" dans "master".
+
+
+Défi Github
+===========
+
+Défi 1: création d'un blogue
+----------------------------
+
+But: utiliser git et github pour vous créer votre petit blogue.
+
+1. Créez vous un compte sur http://github.com/
+2. Choissisez un thème pour votre blogue sur http://jekyllthemes.org/
+3. Créez un dépôt git avec le thème téléchargé
+4. Suivez les instructions sur http://pages.github.com/ pour créez votre blogue sur github
+
+Défi 2: contribuer au blogue d'une autre personne
+-------------------------------------------------
+
+Modifier le dépôt d'une autre personne et soumettre ces modifications.
+
+1. Mettez vous en équipe avec une autre personne dans la salle
+2. Sur github, forkez leur dépôt de blogue
+3. Ajoutez un article de plus au blogue
+4. Envoyez une pull request à votre coéquipier
