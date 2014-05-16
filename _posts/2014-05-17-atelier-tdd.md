@@ -63,14 +63,40 @@ Prérequis :
 
  * Un éditeur texte
  * Python 2.7 / 3
+ * **Nous suggérons d'utiliser Python 3**
 
-Installation py.test :
- 
+Installation de python
+----------------------
+
+Nous suggérons d'utiliser miniconda pour si vous n'avez pas python de déja
+installé. Téléchargez miniconda à l'adresse suivante : http://conda.pydata.org/miniconda.html
+
+Installation sous linux et mac :
+
+    chmod +x Miniconda3-3.4.2-Linux-x86-64.sh
+    ./Miniconda3-3.4.2-Linux-x86-64.sh
+
+**N'oubliez pas de fermer et ouvrir une nouvelle console une fois l'installation terminé !**
+
+
+Installation py.test
+--------------------
+
+Sous miniconda:
+
+    conda install pytest
+
+Avec un virtualenv:
+
     virtualenv env
     source env/bin/activate
     pip install pytest
 
-Structure de projet :
+Si jamais vous optez pour utiliser un virutalenv, n'oubliez pas d'activer votre
+environnement lorsque vous fermez votre terminal.
+
+Structure de projet
+===================
 
     projet
     ├── code.py
@@ -85,7 +111,8 @@ Structure de projet :
         ├── __init__.py
             └── test_librairie.py
 
-Rouler les tests:
+Rouler les tests
+================
 
     cd projet
     py.test tests/test_code.py
