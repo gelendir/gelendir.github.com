@@ -116,3 +116,27 @@ Rouler les tests
 
     cd projet
     py.test tests/test_code.py
+
+
+Aide-memoire fixtures
+=====================
+
+~~~python
+    def test_demonstration_capsys(capsys):
+        print("hello world !")
+
+        #mettre le code a tester ici
+
+        out, err = capsys.readouterr()
+        assert out == "hello world !\n"
+
+    def test_demonstration_tmpdir(tmpdir):
+        filehandle = tmpdir.join('fichier')
+        filehandle.write("hello world !")
+        path = str(filehandle)
+
+        #mettre le code a tester ici
+
+        with open(path) as reader:
+            assert reader.read() == "hello world !"
+~~~
