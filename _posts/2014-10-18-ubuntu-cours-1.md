@@ -35,8 +35,9 @@ Qu'est que le logiciel libre ?
 Technologie
 -----------
 
-http://gelendir.github.io/htcpcpd/
-http://reprap.org/
+[HTCPCD](http://gelendir.github.io/htcpcpd/)
+
+[RepRap](http://reprap.org/)
 
 Liberté
 -------
@@ -67,6 +68,7 @@ Partage
 ---------
 
 [Open Source Ecology](http://opensourceecology.org/)
+
 [Farm Hack](http://farmhack.net/home/)
 
 Matériel Requis
