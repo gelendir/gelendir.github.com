@@ -41,33 +41,33 @@ http://reprap.org/
 Liberté
 -------
 
-https://archive.org/details/FreeSoftwareFreeSociety-SelectedEssaysOfRichardM.Stallman2nd
+[Essais de Richard Stallman](https://archive.org/details/FreeSoftwareFreeSociety-SelectedEssaysOfRichardM.Stallman2nd)
 
 Communauté
 ----------
 
-http://loli.fsa.ulaval.ca/
+[Logiciels libres et sociétés](http://loli.fsa.ulaval.ca/)
 
 Droits numériques
 -----------------
 
-https://www.eff.org/
+[EFF](https://www.eff.org/)
 
 Partage
 -------
 
-https://octoverse.github.com/
+[Statistiques Github](https://octoverse.github.com/)
 
 Éducation/Connaissances
 -----------------------
 
-http://one.laptop.org/
+[OLPC](http://one.laptop.org/)
 
 Évolution
 ---------
 
-http://opensourceecology.org/
-http://farmhack.net/home/
+[Open Source Ecology](http://opensourceecology.org/)
+[Farm Hack](http://farmhack.net/home/)
 
 Matériel Requis
 ===============
